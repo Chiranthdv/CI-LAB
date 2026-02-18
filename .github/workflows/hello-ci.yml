@@ -47,15 +47,15 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      # Unit tests should NOT depend on secrets
+      # Unit tests run independently (no secrets needed)
       - name: Run Unit Tests
         run: node test.js
 
-      # Security check DOES depend on the secret
+      # Security check with API key pasted directly here
       - name: Run Security Check
         run: node app.js
         env:
-          WEATHER_API_KEY: ${{ secrets.WEATHER_API_KEY }}
+          WEATHER_API_KEY: "your-actual-api-key-here"
 
   package:
     needs: build-and-test
