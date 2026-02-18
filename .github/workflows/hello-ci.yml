@@ -15,6 +15,9 @@ jobs:
   say-hello:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4   # Step 1: download your code
-      - name: Run Python Tests       # Step 2: run tests
-        run: python3 test_calc.py
+      - uses: actions/checkout@v4
+      - name: Install pytest
+        run: pip install pytest
+      - name: Run Python Tests
+        run: pytest -v
+
