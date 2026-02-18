@@ -20,7 +20,6 @@
 #         run: pip install pytest
 #       - name: Run Python Tests
 #         run: pytest -v
-
 name: Weather App Production Check
 
 on:
@@ -48,9 +47,11 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
+      # Unit tests should NOT depend on secrets
       - name: Run Unit Tests
         run: node test.js
 
+      # Security check DOES depend on the secret
       - name: Run Security Check
         run: node app.js
         env:
@@ -70,4 +71,3 @@ jobs:
         with:
           name: weather-app-dist
           path: weather-app-dist.zip
-
